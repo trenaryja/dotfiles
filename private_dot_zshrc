@@ -1,0 +1,73 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{226}%1~%f%b => '
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+ 
+# Node / nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completionsource ~/powerlevel10k/powerlevel10k.zsh-theme
+alias nvmwork="nvm use 14.18.3"
+alias nvmlatest="nvm use node"
+
+# Python / pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$(pyenv root)/shims:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
+javahome() {
+  unset JAVA_HOME 
+  export JAVA_HOME=$(/usr/libexec/java_home -v "$1");
+  java -version
+}
+alias j1.8='javahome 1.8'
+alias j11='javahome 11'
+alias j17='javahome 17'
+
+# Google Cloud SDK.
+export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
+if [ -f '/Users/jtrenary/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jtrenary/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/jtrenary/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jtrenary/google-cloud-sdk/completion.zsh.inc'; fi
+
+# SauceLabs
+export SAUCE_USERNAME=sso-prcln-Justin.Trenary
+export SAUCE_ACCESS_KEY=55d73f82-0284-4b6c-96f8-983292870396
+alias sauce='cd ~/sc-4.7.1-osx  && bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'
+
+export EDITOR="code -w"
+export PATH=$HOME/graph:$PATH
+
+# My Aliases
+alias refresh='exec zsh'
+alias zshconfig='code ~/.zshrc'
+alias bashconfig='code ~/.bashrc'
+alias config='p10k configure'
+
+alias c='clear'
+alias ll='ls -al'
+
+alias dev='npm run dev'
+alias develop='npm run develop'
+alias test='npm test -- -u'
+alias wtest='_(){ npx jest --watch $1; }; _'
+alias ncu='_(){ npx npm-check-updates $1; }; _'
+
+alias gc='_(){ git checkout "$1"; }; _' # checkout a branch
+alias gcb='_(){ git checkout -b "$1"; }; _' # create a new branch
+alias gb='git branch'
+alias gcp='git checkout package-lock.json' # undo changes to package-lock.json after npm install
+alias grm='git rebase master'
+alias grc='git rebase --continue'
+alias gca='git commit --amend'
