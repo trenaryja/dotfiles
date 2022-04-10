@@ -51,9 +51,11 @@ export PATH=$HOME/graph:$PATH
 
 # My Aliases
 alias refresh='exec zsh'
-alias zshconfig='code ~/.zshrc'
-alias bashconfig='code ~/.bashrc'
-alias config='p10k configure'
+
+alias chezmoi-setup='sh -c "$(curl -fsLS chezmoi.io/get)" -- init trenaryja'
+alias dot='_(){ chezmoi edit --apply $1; }; _'
+alias dotzsh='dot ~/.zshrc'
+alias dotbash='dot ~/.bashrc'
 
 alias c='clear'
 alias ll='ls -al'
