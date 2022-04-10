@@ -44,7 +44,7 @@ if [ -f '/Users/jtrenary/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 # SauceLabs
 export SAUCE_USERNAME=sso-prcln-Justin.Trenary
 export SAUCE_ACCESS_KEY=55d73f82-0284-4b6c-96f8-983292870396
-alias sauce='cd ~/sc-4.7.1-osx  && bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'
+alias sauce='sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'
 
 export EDITOR="code -w"
 export PATH=$HOME/graph:$PATH
