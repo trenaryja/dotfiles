@@ -73,3 +73,4 @@ alias gcp='git checkout package-lock.json' # undo changes to package-lock.json a
 alias grm='git rebase master'
 alias grc='git rebase --continue'
 alias gca='git commit --amend'
+alias ghrepo='gh repo view --web'
